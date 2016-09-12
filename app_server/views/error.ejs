@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= error.status %> <%= message %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+
+
+    <h1><%= error.status %> Error</h1>
+    <p><%= message %></p>
+    <p>
+      Try refreshing the page, if this problem
+      persists then we're already working on it!
+    </p>
+
+    <%= error.stack %>
+  </body>
+</html>

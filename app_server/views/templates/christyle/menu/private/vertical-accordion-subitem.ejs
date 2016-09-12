@@ -1,0 +1,17 @@
+<% if (! subitem.items) { %>
+  <a href="<%= subitem.anchor %>" class="list-group-item" data-parent="#<%= parentname %>"><%= subitem.label %></a>
+<% } else {
+    var collapsed = '';
+    if (subitem.collapsed) { collapsed = 'in'; }
+%>
+  <a href="#<%= subitem.id %>" class="list-group-item" data-toggle="collapse" data-parent="#<%= subitem.id %>"><%= subitem.label %> <span class="caret"></span></a>
+  <div class="collapse list-group-submenu list-group-submenu-1 <%= collapsed %>" id="<%= subitem.id %>">
+    <%
+      subitem.items.forEach(function(subsubitem) {
+    %>
+      <%- include('vertical-accordion-subitem', {subitem: subsubitem, parentname: subitem.id}) %>
+    <%
+      })
+     %>
+  </div>
+<% } %>
