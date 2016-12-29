@@ -1,0 +1,21 @@
+<div class="list-group articles-list">
+
+  <%
+    if (articles) {
+      articles.forEach(function(article) {
+   %>
+   <a href="http://www.google.fr" class="list-group-item">
+     <br/><br/>
+     <h4 class="list-group-item-heading"><%- article.title %></h4>
+     <p class="list-group-item-text"><%- article.summary %></p>
+
+     <p class="list-group-item-text"><%- article.htmlContent %></p>
+
+
+   </a>
+  <%
+      })
+    }
+   %>
+
+</div>

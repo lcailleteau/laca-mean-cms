@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/admin/" />
+
+    <title>Admin page</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap styling. -->
+    <link href="/public/libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/templates/christyle/css/skins/simplex.bootstrap.css" rel="stylesheet">
+    <link href="/public/templates/christyle/css/christyle.css" rel="stylesheet">
+
+    <!-- To remove ? -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <!-- The main laca admin Angular component. -->
+    <lacaadmin>
+      <br /><br />
+      <b>Chargement en cours...</b><br /><br />
+      <i>Veuillez patienter...</i>
+    </lacaadmin>
+
+    <!-- Angular dependencies. -->
+    <!-- Polyfill(s) for older browsers -->
+
+    <!--
+    <script src="/public/frontend_angular/libs/core-js/client/shim.min.js"></script>
+
+    <script src="/public/frontend_angular/libs/zone.js/dist/zone.js"></script>
+    <script src="/public/frontend_angular/libs/reflect-metadata/Reflect.js"></script>
+    <script src="/public/frontend_angular/libs/systemjs/dist/system.src.js"></script>
+
+    <script src="/public/frontend_angular/systemjs.config.js"></script>
+    <script>
+      // System.import('/public/frontend_angular/js').catch(function(err){ console.error(err); });
+      System.import('/frontend_angular/js').catch(function(err){ console.error(err); });
+    </script>
+    -->
+
+    <!-- Angular2 javascript dependencies. -->
+    <script src="/angular/libs/core-js/client/shim.min.js"></script>
+    <script src="/angular/libs/zone.js/dist/zone.js"></script>
+    <script src="/angular/libs/reflect-metadata/Reflect.js"></script>
+    <script src="/angular/libs/systemjs/dist/system.src.js"></script>
+
+    <script src="/angular/systemjs.config.js"></script>
+    <script>
+      System.import('/angular/js').catch(function(err){ console.error(err); });
+    </script>
+
+    <!-- Javascript styling.-->
+    <script src="/public/libs/jquery-3.1.0/js/jquery.min.js"></script>
+    <script src="/public/libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="/public/templates/christyle/js/christyle.js"></script>
+
+    <!-- CKEditor. -->
+    <script src="/public/libs/ckeditor-4.6/ckeditor.js"></script>
+  </body>
+</html>

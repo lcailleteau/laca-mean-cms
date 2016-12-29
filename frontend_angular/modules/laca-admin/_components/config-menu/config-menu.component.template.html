@@ -1,0 +1,18 @@
+
+Config menu component<br/>
+<br/><br/>
+
+<table>
+  <tr>
+    <th>Titre</th>
+    <th>Nom</th>
+    <th>Description</th>
+    <th>Publié ?</th>
+  </tr>
+  <tr *ngFor="let currMenuConfig of menuConfigs">
+    <td>{{currMenuConfig.title}}</td>
+    <td>{{currMenuConfig.name}}</td>
+    <td>{{currMenuConfig.description}}</td>
+    <td>{{currMenuConfig.published}}</td>
+  </tr>
+</table>

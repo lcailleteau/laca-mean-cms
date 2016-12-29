@@ -1,0 +1,30 @@
+
+<li *ngIf="lacaMenuItem.header" class="nav-header">
+  {{lacaMenuItem.label}}
+</li>
+
+<li *ngIf="lacaMenuItem.items && lacaMenuItem.items.length>0" class="accordion" >
+  <a href="#" (click)="accordionClick()">
+    <i *ngIf="lacaMenuItem.icon" class="glyphicon glyphicon-{{lacaMenuItem.icon}}"></i>
+    <span>&nbsp;&nbsp;{{lacaMenuItem.label}}</span>
+  </a>
+  <ul class="nav nav-pills nav-stacked vertical-accordion-navstack" [@openClose]="stateExpression()">
+    <laca-menu-item
+      *ngFor="let currMenuItem of lacaMenuItem.items"
+      [lacaMenuItem]="currMenuItem"
+      class="nav nav-pills nav-stacked vertical-accordion-navstack">
+    </laca-menu-item>
+  </ul>
+</li>
+
+<li *ngIf="!lacaMenuItem.header && (!lacaMenuItem.items || lacaMenuItem.items.length<=0)">
+  <a *ngIf="lacaMenuItem.anchorWithSitePrefix" routerLink="/{{this.adminMainService.site}}{{lacaMenuItem.anchor}}" (click)="accordionClick()">
+    <i *ngIf="lacaMenuItem.icon" class="glyphicon glyphicon-{{lacaMenuItem.icon}}"></i>
+    <span>&nbsp;&nbsp;{{lacaMenuItem.label}}</span>
+  </a>
+
+  <a *ngIf="! lacaMenuItem.anchorWithSitePrefix" routerLink="/{{lacaMenuItem.anchor}}" (click)="accordionClick()">
+    <i *ngIf="lacaMenuItem.icon" class="glyphicon glyphicon-{{lacaMenuItem.icon}}"></i>
+    <span>&nbsp;&nbsp;{{lacaMenuItem.label}}</span>
+  </a>
+</li>

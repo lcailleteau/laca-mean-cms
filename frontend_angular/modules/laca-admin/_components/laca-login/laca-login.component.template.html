@@ -1,0 +1,61 @@
+
+<!-- Header. -->
+<legend><img src="/angular/images/icon-48-user.png"/>&nbsp;&nbsp;Login</legend>
+
+<!-- Error message. -->
+<div [hidden]="this.adminMainService.errorMessage == null || this.adminMainService.errorMessage == ''"
+     class="alert alert-danger">{{this.adminMainService.errorMessage}}</div>
+
+<div [hidden]="this.adminMainService.errorDisplayComponent == false">
+  <!-- Information. -->
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10"><b>Site</b> : {{this.adminMainService.siteDetail?.title}}</div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10"><b>Description</b> : {{this.adminMainService.siteDetail?.description}}</div>
+  </div>
+  <br />
+
+  <!-- Form. -->
+  <form class="form-horizontal" (ngSubmit)="onSubmit()">
+    <fieldset>
+
+      <div class="form-group">
+        <label for="name" class="col-lg-2 control-label">Login</label>
+        <div class="col-lg-10">
+          <input type="text"
+              class="form-control"
+              id="name"
+              placeholder="Login"
+              required
+              [(ngModel)]="login"
+              name="login">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="col-lg-2 control-label">Mot de passe</label>
+        <div class="col-lg-10">
+          <input type="password"
+              class="form-control"
+              id="password"
+              placeholder="Mot de passe"
+              required
+              [(ngModel)]="password"
+              name="password">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <button type="submit" class="btn btn-success">OK</button>
+          <button type="button" class="btn btn-danger">Effacer</button>
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+</div>

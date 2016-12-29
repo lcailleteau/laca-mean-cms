@@ -1,0 +1,35 @@
+<%
+  var ulClassCollapsed = '';
+  //if (! item.collapsed) { ulClassCollapsed = 'active'; }
+
+  // Icon for our element ?
+  var iconElement = '';
+  if (item.icon) { iconElement = '<i class="glyphicon glyphicon-' + item.icon + '"></i>'; }
+
+  if (item.header) {
+%>
+  <li class="nav-header"><%- item.label %></li>
+<%
+  } else if (! item.items) {
+%>
+  <li><a href="<%= item.anchor %>"><%- iconElement %>
+    <span>&nbsp;&nbsp;<%- item.label %></span></a>
+  </li>
+<%
+  } else {
+%>
+  <li class="accordion accordion-init <%= ulClassCollapsed %>"><a href="#"><%- iconElement %>
+    <span>&nbsp;&nbsp;<%- item.label %></span></a>
+    <ul class="nav nav-pills nav-stacked vertical-accordion-navstack">
+      <%
+        item.items.forEach(function(subitem) {
+      %>
+        <%- include('vertical-accordion-navstack-subitem', {item: subitem}) %>
+      <%
+        })
+       %>
+    </ul>
+  </li>
+<%
+  }
+%>

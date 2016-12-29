@@ -1,0 +1,89 @@
+
+<!-- Bread crumb. -->
+<ul class="breadcrumb">
+  <li><a routerLink="/{{this.adminMainService.site}}">Accueil</a></li>
+  <li><a routerLink="/{{this.adminMainService.site}}/config-wiki-article">Articles Wiki</a></li>
+  <li class="active">Ajout d'article</li>
+</ul>
+
+<!-- Header. -->
+<legend><img src="/angular/images/icon-48-edit.png"/>&nbsp;&nbsp;Edition d'un article</legend>
+
+<!-- Headers buttons. -->
+<div class="laca-header">
+  <div class="laca-header-button" (click)="buttonNavigate('/config-wiki-article')">
+		<img src="/angular/images/icon-48-revert.png"><br />Retour arrière
+	</div>
+  <div class="laca-header-button" (click)="onSubmit()">
+    <img src="/angular/images/icon-48-checkin.png"><br />Enregistrer
+  </div>
+</div>
+
+<!-- Error message. -->
+<div [hidden]="adminMainService.errorMessage == null || adminMainService.errorMessage == ''"
+     class="alert alert-danger">{{adminMainService.errorMessage}}</div>
+
+<!-- Form. -->
+<form class="form-horizontal" (ngSubmit)="onSubmit()">
+  <fieldset>
+
+    <div class="form-group">
+      <label for="title" class="col-lg-2 control-label">Titre</label>
+      <div class="col-lg-10">
+        <input type="text"
+            class="form-control"
+            id="title"
+            placeholder="Titre de l'article"
+            required
+            [(ngModel)]="configWikiArticle.title"
+            name="title">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="slug" class="col-lg-2 control-label">Slug (partie d'URL à associer à l'article)</label>
+      <div class="col-lg-10">
+        <input type="text"
+            class="form-control"
+            id="slug"
+            placeholder="Partie d'URL à associer à la catégorie"
+            required
+            [(ngModel)]="configWikiArticle.slug"
+            name="slug">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="category" class="col-lg-2 control-label">Catégorie</label>
+      <div class="col-lg-10">
+        <select
+            class="form-control"
+            id="category"
+            placeholder="Catégorie"
+            [(ngModel)]="configWikiArticle.category"
+            required
+            name="category">
+          <option *ngFor="let wikiCat of configWikiService.configWikiCategories" [value]="wikiCat._id">{{wikiCat.display_nameWithTabs}}</option>
+        </select>
+      </div>
+    </div>
+
+    <!--
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="submit" class="btn btn-success">Créer</button>
+        <button type="button" class="btn btn-danger">Effacer</button>
+      </div>
+    </div>
+  -->
+  </fieldset>
+</form>
+
+
+  <lacackeditor
+      [(ngModel)]="configWikiArticle.htmlContent"
+
+      debounce="500">
+
+      test encore
+    </lacackeditor>

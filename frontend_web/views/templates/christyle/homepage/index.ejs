@@ -1,0 +1,9 @@
+<%
+  if (htmlFragments) {
+    htmlFragments.forEach(function(htmlFragment) {
+ %>
+  <%- htmlFragment.htmlContent %>
+<%
+    })
+  }
+ %>

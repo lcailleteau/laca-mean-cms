@@ -1,0 +1,62 @@
+
+<ul class="breadcrumb">
+  <li><a routerLink="/{{this.adminMainService.site}}">Accueil</a></li>
+  <li class="active">Articles Wiki</li>
+</ul>
+
+<legend><img src="/angular/images/icon-48-article.png"/>&nbsp;&nbsp;Liste des articles</legend>
+
+<!-- Headers buttons. -->
+<div class="laca-header">
+  <div class="laca-header-button" (click)="buttonNavigate('/config-wiki-article/trash')">
+    <img src="/angular/images/icon-48-trash.png"><br />Supprimer
+  </div>
+  <div class="laca-header-button" (click)="buttonNavigate('/')">
+		<img src="/angular/images/icon-48-revert.png"><br />Retour arrière
+	</div>
+	<div class="laca-header-button" (click)="buttonNavigate('/config-wiki-article/new')">
+		<img src="/angular/images/icon-48-article-add.png"><br />Nouvel article
+	</div>
+  <div class="laca-header-button" (click)="buttonNavigateEditArticle()">
+		<img src="/angular/images/icon-48-edit.png"><br />Editer
+	</div>
+</div>
+
+<!-- Error message. -->
+<div [hidden]="adminMainService.errorMessage == null || adminMainService.errorMessage == ''"
+     class="alert alert-danger">{{adminMainService.errorMessage}}</div>
+
+<!-- Form. -->
+<form class="form-horizontal" (ngSubmit)="onSubmit()">
+  <fieldset>
+
+    <div class="form-group">
+      <label for="category" class="col-lg-2 control-label">Catégorie</label>
+      <div class="col-lg-10">
+        <select
+            class="form-control"
+            id="category"
+            placeholder="Catégorie"
+            [ngModel]="selectedConfigWikiCategory"
+            (ngModelChange)="onCategoryChange($event)"
+            required
+            name="category">
+          <option *ngFor="let wikiCat of configWikiService.configWikiCategories" [value]="wikiCat._id">{{wikiCat.display_nameWithTabs}}</option>
+        </select>
+      </div>
+    </div>
+
+  </fieldset>
+</form>
+
+<!-- Table with articles. -->
+<laca-table
+    [dataset]='filteredConfigWikiArticles'
+    [class]='"table table-striped table-hover"'
+    [selectable]='true'
+    [(selectedRows)]='selectedConfigWikiArticles'>
+  <laca-column [value]="'slug'" [header]="'Slug'"></laca-column>
+  <laca-column [value]="'title'" [header]="'Titre'"></laca-column>
+  <laca-column [value]="'author'" [header]="'Auteur'"></laca-column>
+  <laca-column [value]="'createdOn'" [header]="'Date de création'"></laca-column>
+</laca-table>

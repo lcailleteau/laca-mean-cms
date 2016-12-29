@@ -1,0 +1,36 @@
+
+<ul class="breadcrumb">
+  <li><a routerLink="/{{this.adminMainService.site}}">Accueil</a></li>
+  <li class="active">Catégories Wiki</li>
+</ul>
+
+<legend><img src="/angular/images/icon-48-category.png"/>&nbsp;&nbsp;Liste des catégories</legend>
+
+<!-- Headers buttons. -->
+<div class="laca-header">
+  <div class="laca-header-button" (click)="buttonNavigate('/config-wiki-category/trash')">
+    <img src="/angular/images/icon-48-trash.png"><br />Supprimer
+  </div>
+  <div class="laca-header-button" (click)="buttonNavigate('/')">
+		<img src="/angular/images/icon-48-revert.png"><br />Retour arrière
+	</div>
+	<div class="laca-header-button" (click)="buttonNavigate('/config-wiki-category/new')">
+		<img src="/angular/images/icon-48-category-add.png"><br />Nouvelle catégorie
+	</div>
+  <div class="laca-header-button" (click)="buttonNavigateEditCategory()">
+		<img src="/angular/images/icon-48-edit.png"><br />Editer
+	</div>
+</div>
+
+<!-- Table with categories. -->
+<laca-table
+    [dataset]='configWikiService.configWikiCategories'
+    [class]='"table table-striped table-hover"'
+    [selectable]='true'
+    [(selectedRows)]='selectedConfigWikiCategories'>
+    (rowsSelectionUpdated)='selectedCategoriesUpdated($event)'>
+  <laca-column [value]="'display_nameWithTabs'" [header]="'Nom'"></laca-column>
+  <laca-column [value]="'description'" [header]="'Description'"></laca-column>
+  <laca-column [value]="'slug'" [header]="'Slug'"></laca-column>
+  <laca-column [value]="'display_parentCategory'" [header]="'Catégorie parente'"></laca-column>
+</laca-table>

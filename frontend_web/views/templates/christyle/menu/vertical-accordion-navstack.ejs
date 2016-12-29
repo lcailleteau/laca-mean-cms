@@ -1,0 +1,20 @@
+<div id="<%= name %>">
+  <div class="sidebar-nav">
+    <div class="nav-canvas">
+      <div class="nav-sm nav nav-stacked">
+
+      </div>
+      <ul class="nav nav-pills nav-stacked vertical-accordion-navstack">
+        <%
+          if (items) {
+            items.forEach(function(item) {
+         %>
+         <%- include('private/vertical-accordion-navstack-subitem', {item: item}) %>
+         <%
+            })
+          }
+         %>
+      </ul>
+    </div>
+  </div>
+</div>

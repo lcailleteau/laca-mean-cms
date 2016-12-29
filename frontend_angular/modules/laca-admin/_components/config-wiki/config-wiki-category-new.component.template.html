@@ -1,0 +1,85 @@
+
+<!-- Bread crumb. -->
+<ul class="breadcrumb">
+  <li><a routerLink="/{{this.adminMainService.site}}">Accueil</a></li>
+  <li><a routerLink="/{{this.adminMainService.site}}/config-wiki-category">Catégories Wiki</a></li>
+  <li class="active">Nouvelle catégorie</li>
+</ul>
+
+<!-- Header. -->
+<legend><img src="/angular/images/icon-48-category-add.png"/>&nbsp;&nbsp;Création d'une nouvelle catégorie</legend>
+
+<!-- Headers buttons. -->
+<div class="laca-header">
+  <div class="laca-header-button" (click)="buttonNavigate('/config-wiki-category')">
+    <img src="/angular/images/icon-48-revert.png"><br />Retour arrière
+  </div>
+  <div class="laca-header-button" (click)="onSubmit()">
+    <img src="/angular/images/icon-48-checkin.png"><br />Enregistrer
+  </div>
+</div>
+
+<!-- Error message. -->
+<div [hidden]="adminMainService.errorMessage == null || adminMainService.errorMessage == ''"
+     class="alert alert-danger">{{adminMainService.errorMessage}}</div>
+
+<!-- Form. -->
+<form class="form-horizontal" (ngSubmit)="onSubmit()">
+  <fieldset>
+
+    <div class="form-group">
+      <label for="name" class="col-lg-2 control-label">Nom</label>
+      <div class="col-lg-10">
+        <input type="text"
+            class="form-control"
+            id="name"
+            placeholder="Nom de la catégorie"
+            required
+            [(ngModel)]="configWikiCategory.name"
+            name="name">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="slug" class="col-lg-2 control-label">Slug (partie d'URL à associer à la catégorie)</label>
+      <div class="col-lg-10">
+        <input type="text"
+            class="form-control"
+            id="slug"
+            placeholder="Partie d'URL à associer à la catégorie"
+            required
+            [(ngModel)]="configWikiCategory.slug"
+            name="slug">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description" class="col-lg-2 control-label">Description</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="description" placeholder="Description de la catégorie"
+          [(ngModel)]="configWikiCategory.description" name="description">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="parentCategory" class="col-lg-2 control-label">Catégorie parente</label>
+      <div class="col-lg-10">
+        <select class="form-control" id="parentCategory"
+            [(ngModel)]="configWikiCategory.parentCategory" name="parentCategory">
+          <!-- option *ngFor="let wikiCat of configWikiService.configWikiCategoryNames" [value]="wikiCat.id">{{wikiCat.name}}</option -->
+          <option value="">Catégorie racine</option>
+          <option *ngFor="let wikiCat of configWikiService.configWikiCategories" [value]="wikiCat._id">{{wikiCat.display_nameWithTabs}}</option>
+        </select>
+      </div>
+    </div>
+
+<!--
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="submit" class="btn btn-success">Créer</button>
+        <button type="button" class="btn btn-danger">Effacer</button>
+      </div>
+    </div>
+-->
+  </fieldset>
+</form>

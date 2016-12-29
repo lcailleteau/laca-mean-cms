@@ -1,0 +1,67 @@
+
+<!--
+<h2>Application d'administration du site MACHIN</h2>
+-->
+
+
+<!-- Error message. -->
+<div [hidden]="this.adminMainService.errorMessage == null || this.adminMainService.errorMessage == ''"
+     class="alert alert-danger">{{this.adminMainService.errorMessage}}</div>
+
+
+
+  <!-- Headers big buttons. -->
+  <div class="laca-header-big">
+    <div class="laca-header-big-button" (click)="buttonNavigate('/site')">
+      <img src="/angular/images/icon-48-info.png"><br />Configuration du site
+    </div>
+
+    <div class="laca-header-big-button" (click)="buttonNavigate('/users')">
+      <img src="/angular/images/icon-48-user.png"><br />Gérer les utilisateurs
+    </div>
+
+    <div class="laca-header-big-button" (click)="buttonNavigate('/homes')">
+      <img src="/angular/images/icon-48-frontpage.png"><br />Définir les home pages
+    </div>
+
+    <div class="laca-header-big-button" (click)="buttonNavigate('/html-fragments')">
+      <img src="/angular/images/icon-48-themes.png"><br />Ecrire les fragments HTML
+    </div>
+
+    <div class="laca-header-big-button" (click)="buttonNavigate('/config-wiki-category')">
+      <img src="/angular/images/icon-48-category.png"><br />Gérer les catégories du WIKI
+    </div>
+
+    <div class="laca-header-big-button" (click)="buttonNavigate('/config-wiki-article')">
+      <img src="/angular/images/icon-48-article.png"><br />Gérer les articles du WIKI
+    </div>
+
+    <div class="laca-header-big-button" (click)="buttonNavigate('/config-wiki-category')">
+      <img src="/angular/images/icon-48-category.png"><br />Gérer les catégories des exercices
+    </div>
+
+    <div class="laca-header-big-button" (click)="buttonNavigate('/config-wiki-category')">
+      <img src="/angular/images/icon-48-article.png"><br />Gérer les articles des exercices
+    </div>
+
+<!--
+    <div class="laca-header-big-button" (click)="buttonNavigate('/config-exo-category')">
+      <img src="/angular/images/icon-48-category.png"><br />Gérer les catégories des exercices
+    </div>
+
+    <div class="laca-header-big-button" (click)="buttonNavigate('/config-exo-category')">
+      <img src="/angular/images/icon-48-article.png"><br />Gérer les articles des exercices
+    </div>
+-->
+    <div class="laca-header-big-button" (click)="buttonNavigate('/media-handle')">
+      <img src="/angular/images/icon-48-media.png"><br />Accéder au gestionnaire de médias
+    </div>
+
+    <div class="laca-header-big-button" (click)="buttonNavigate('/config-menu')">
+      <img src="/angular/images/icon-48-menumgr.png"><br />Gérer les menus
+    </div>
+
+    <div class="laca-header-big-button" (click)="buttonNavigate('/config-menu')">
+      <img src="/angular/images/icon-48-themes.png"><br />Gérer les modèles de page
+    </div>
+  </div>

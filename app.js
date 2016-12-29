@@ -1,3 +1,4 @@
+// Express application requirements.
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,34 +6,77 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-// We declare here all possible component routes of our site.
-var routesHomepage = require('./app_server/routes/homepage');
-var routesWiki = require('./app_server/routes/wiki');
+// The mongoDb instance configuration.
+require('./backend/database/mongo-db-connector');
 
-// var users = require('./app_server/routes/users');
+// The database models.
+require('./backend/models/site');
+require('./backend/models/user');
+require('./backend/models/template');
+require('./backend/models/page-model');
+require('./backend/models/homepage');
+require('./backend/models/menu');
+require('./backend/models/wiki');
+require('./backend/models/html-fragment');
 
+// The routes.
+var routesFrontendWeb = require('./frontend_web/routes');
+var routesFrontendRest = require('./frontend_rest/routes');
 
-
+// Express application.
 var app = express();
 
-/**
- * View engine setup.
- */
-app.set('views', path.join(__dirname, 'app_server', 'views'));
+// Express view engine parameters.
+app.set('views', path.join(__dirname, 'frontend_web', 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+// Connect.js middleware flow.
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/', routes);
+///public/frontend_angular/modules/admin/
+/*
+app.use('/public/frontend_angular/modules/admin/',
+  express.static(path.join(__dirname, 'public/frontend_angular/modules/admin/index.html')));
+  */
 
-app.use('/:site/wiki', routesWiki);
-app.use('/:site', routesHomepage);
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
+/*
+app.get('/public/*', function(request, response, next) {
+  //response.sendfile(__dirname + '/index.html');
+  response.sendfile('public/frontend_angular/modules/admin/index.html');
+});
+*/
+
+/*
+app.get('/:site/admin*', function(request, response, next) {
+  //response.sendfile(__dirname + '/index.html');
+  response.sendfile('frontend_angular/modules/admin/index.html');
+});
+*/
+
+app.use('/angular', express.static(path.join(__dirname, 'frontend_angular/public')));
+
+app.use('/admin', express.static(path.join(__dirname, 'frontend_angular/modules/laca-admin')));
+
+app.get('/admin*', function(request, response, next) {
+  //response.sendfile(__dirname + '/index.html');
+  //response.sendfile('frontend_angular/modules/admin/index.html');
+  response.sendFile(path.join(__dirname, 'frontend_angular/modules/laca-admin/index.html'));
+});
+
+
+// Let's add our own routes.
+app.use('/', routesFrontendWeb);
+app.use('/api', routesFrontendRest);
+
+
+
 
 
 // app.use('/users', users);
@@ -68,5 +112,5 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
+// Exports the express app.
 module.exports = app;

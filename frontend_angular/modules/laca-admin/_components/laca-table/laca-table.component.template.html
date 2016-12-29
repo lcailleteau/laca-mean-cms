@@ -1,0 +1,12 @@
+<table class="{{class}}">
+  <thead>
+    <tr>
+      <th *ngFor="let column of columns">{{column.header}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of dataset" (click)="onSelect(row)" [class.selected]="isRowSelected(row)">
+      <td *ngFor="let column of columns">{{row[column.value]}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,7 +1,95 @@
+/* ------------------------------------------------------------------ */
+/* Styling for menu, flavour vertical accordion navstack */
+/* ------------------------------------------------------------------ */
+
+/* Generic bootstrap styling. */
+
 .navbar {
-	margin-bottom: 0;
+  border-radius: 0;
+  margin-bottom: 0;
 }
 
+.sidebar-nav .nav-header {
+  display: block;
+  padding: 3px 15px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 18px;
+  color: #999999;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+
+.sidebar-nav {
+    min-height: 0;
+    box-shadow: 0 0 10px #BDBDBD;
+    border-radius: 5px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    max-height: none;
+}
+
+/* Specific accordion styling. */
+
+.vertical-accordion-navstack {
+  overflow: hidden;
+}
+
+.vertical-accordion-navstack > li > a {
+  border: 1px solid rgba(221, 221, 221, 0.46);
+}
+
+.vertical-accordion-navstack > li {
+  margin-top: 0 !important;
+}
+
+ul.vertical-accordion-navstack li:hover {
+  margin-left: 8px;
+}
+
+ul.vertical-accordion-navstack li.active {
+  margin-left: 8px;
+}
+
+ul.vertical-accordion-navstack li.nav-header:hover {
+  margin-left: 0;
+}
+
+ul.vertical-accordion-navstack li:not(.nav-header) {
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -ms-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+}
+
+.accordion > ul {
+  margin-left: 30px;
+}
+
+/* Specific accordion styling for classic JS, JQuery initializing. */
+
+.accordion-init > ul {
+  display: none;
+}
+
+/* Specific menu styling for Angular2 initializing. */
+
+menu {
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+
+
+
+
+
+/* ------------------------------------------------------------------ */
+/* Styling for main pages, and home pages.
+/* ------------------------------------------------------------------ */
 
 body {
 	//background: #3E4649;
@@ -16,8 +104,6 @@ p {
 	font-size: 16px;
 	color: #000;
 }
-
-
 
 .jumbotron {
 	//background: #27A967;
@@ -125,4 +211,108 @@ color: #bbb;
 }
 .list-group-submenu {
   margin-left:20px;
+}
+
+
+
+
+
+/* ------------------------------------------------------------------ */
+/* Styling for LACA button headers.
+/* ------------------------------------------------------------------ */
+.laca-header {
+  padding: 20px;
+}
+
+.laca-header:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.laca-header-button {
+  margin: 5px;
+  padding: 10px;
+  font-size: 10px;
+  color: rgb(77,77,77);
+  text-align: center;
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  border: 1px solid rgba(221, 221, 221, 0.86);
+  border-radius: 10px;
+  float: right;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.7);
+}
+.laca-header-button:hover {
+  background-color: rgb(242,242,242);
+  border-color: white;
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------ */
+/* Styling for LACA big button headers, for the main page.
+/* ------------------------------------------------------------------ */
+.laca-header-big {
+  padding: 20px;
+  border-radius: 5px;
+  border: 2px solid rgba(221, 221, 221, 0.86);
+
+
+  /* background-color: rgb(212,212,212); */
+
+  /*display: table-cell;*/
+  vertical-align: middle;
+  text-align: center;
+
+
+}
+/*
+.laca-header-big:after {
+  clear: both;
+  content: "";
+}
+*/
+.laca-header-big-button {
+  background-color: rgb(255,255,255);
+  margin: 10px;
+  padding: 10px;
+  font-size: 16px;
+  color: rgb(77,77,77);
+  text-align: center;
+  width: 140px;
+  height: 140px;
+  overflow: hidden;
+  border: 1px solid rgba(221, 221, 221, 0.86);
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.7);
+  display: inline-table;
+  /* display: inline-block; */
+}
+
+
+.laca-header-big-button:hover {
+  background-color: rgb(242,242,242);
+  border-color: white;
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+
+/* ------------------------------------------------------------------ */
+/* Styling for LACA tables.
+/* ------------------------------------------------------------------ */
+laca-table tr.selected {
+  background-color: #CFD8DC !important;
+  color: white;
+}
+laca-table tr.selected:hover {
+  background-color: #BBD8DC !important;
+  color: white;
+}
+laca-table tr:hover {
+  color: #607D8B;
+  background-color: #DDD !important;
+  left: .1em;
 }

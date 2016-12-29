@@ -1,0 +1,100 @@
+
+A la premiere fusion de laca entre front express et angular, erreur rencontrée :
+
+
+E:\s052516\01 - Perso\laca\source\laca>tsc
+node_modules/@angular/common/src/directives/ng_class.d.ts(46,34): error TS2304: Cannot find name 'Set'.
+node_modules/@angular/common/src/pipes/async_pipe.d.ts(39,38): error TS2304: Cannot find name 'Promise'.
+node_modules/@angular/compiler/src/compile_metadata.d.ts(347,20): error TS2304: Cannot find name 'Set'.
+node_modules/@angular/compiler/src/compile_metadata.d.ts(348,15): error TS2304: Cannot find name 'Set'.
+node_modules/@angular/compiler/src/directive_normalizer.d.ts(19,100): error TS2304: Cannot find name 'Promise'.
+node_modules/@angular/compiler/src/directive_normalizer.d.ts(21,74): error TS2304: Cannot find name 'Promise'.
+node_modules/@angular/compiler/src/offline_compiler.d.ts(15,26): error TS2304: Cannot find name 'Map'.
+node_modules/@angular/compiler/src/offline_compiler.d.ts(16,38): error TS2304: Cannot find name 'Map'.
+node_modules/@angular/compiler/src/offline_compiler.d.ts(31,124): error TS2304: Cannot find name 'Promise'.
+node_modules/@angular/compiler/src/output/output_ast.d.ts(424,63): error TS2304: Cannot find name 'Set'.
+node_modules/@angular/compiler/src/resource_loader.d.ts(13,23): error TS2304: Cannot find name 'Promise'.
+node_modules/@angular/compiler/src/runtime_compiler.d.ts(40,49): error TS2304: Cannot find name 'Promise'.
+node_modules/@angular/compiler/src/runtime_compiler.d.ts(42,65): error TS2304: Cannot find name 'Promise'.
+node_modules/@angular/compiler/src/template_parser/template_parser.d.ts(45,12): error TS2304: Cannot find name 'Set'.
+node_modules/@angular/compiler/src/util.d.ts(35,18): error TS2304: Cannot find name 'Promise'.
+
+
+Je pensais que cela venait d'un pb d'exclusion de node_modules, et meme après avoir
+mis dans le tsconfig.json :
+
+  "exclude": [
+  "public",
+   "node_modules"
+ ]
+
+cela ne donnait rien...
+
+
+En fait je n'avais pas de répertoire typings qui normalement s'installe au premier
+npm install du projet...
+
+Et même en lancant comme expliqué dans le quickstart angular 2 :
+npm run typings install
+
+Je récupérais cette erreur :
+
+E:\s052516\01 - Perso\laca\source\laca>npm run typings install
+npm ERR! Windows_NT 6.1.7601
+npm ERR! argv "D:\\OutilsDev\\NodeJS\\node.exe" "D:\\OutilsDev\\NodeJS\\node_modules\\npm\\bin\\npm-cli.js" "run" "typings" "install"
+npm ERR! node v4.4.7
+npm ERR! npm  v2.15.8
+
+npm ERR! missing script: typings
+npm ERR!
+npm ERR! If you need help, you may report this error at:
+npm ERR!     <https://github.com/npm/npm/issues>
+
+npm ERR! Please include the following file with any support request:
+npm ERR!     E:\s052516\01 - Perso\laca\source\laca\npm-debug.log
+
+E:\s052516\01 - Perso\laca\source\laca>npm install
+npm ERR! install Couldn't read dependencies
+npm ERR! Windows_NT 6.1.7601
+npm ERR! argv "D:\\OutilsDev\\NodeJS\\node.exe" "D:\\OutilsDev\\NodeJS\\node_modules\\npm\\bin\\npm-cli.js" "install"
+npm ERR! node v4.4.7
+npm ERR! npm  v2.15.8
+npm ERR! file E:\s052516\01 - Perso\laca\source\laca\package.json
+npm ERR! code EJSONPARSE
+
+npm ERR! Failed to parse json
+npm ERR! Trailing comma in object at 10:3
+npm ERR!   },
+npm ERR!   ^
+npm ERR! File: E:\s052516\01 - Perso\laca\source\laca\package.json
+npm ERR! Failed to parse package.json data.
+npm ERR! package.json must be actual JSON, not just JavaScript.
+npm ERR!
+npm ERR! This is not a bug in npm.
+npm ERR! Tell the package author to fix their package.json file. JSON.parse
+
+npm ERR! Please include the following file with any support request:
+npm ERR!     E:\s052516\01 - Perso\laca\source\laca\npm-debug.log
+
+
+En fait il fallait mettre dans package.json un start script pour typings :
+
+"typings": "typings"
+
+Puis a nouveau npm run typings install
+
+Et mon exclusion de répertoire dans tsconfig passe alors !!!
+
+
+JE suis passé de typescript 1.8.10 à 2.0.3 également en faisant :
+
+npm install -g typescript
+
+
+
+
+
+cf. http://stackoverflow.com/questions/38163389/missing-script-typings-install
+https://angular.io/docs/ts/latest/quickstart.html
+
+https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
