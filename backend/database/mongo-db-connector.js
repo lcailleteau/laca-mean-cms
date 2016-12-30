@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
 var gracefulShutdown;
-var dbURI = 'mongodb://127.0.0.1/laca';
-if (process.env.NODE_ENV === 'production') {
-    dbURI = process.env.MONGOLAB_URI;
+
+// CONNECTION TO THE DATABASE
+var dbURI = process.env.MONGOLAB_URI;
+if (dbURI == null || dbURI == '') {
+  dbURI = 'mongodb://127.0.0.1/laca';
 }
 mongoose.connect(dbURI);
 
