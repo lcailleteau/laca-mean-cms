@@ -47,8 +47,10 @@ module.exports.list = function(MongooseModel, expectedRoles, queryFunction, proj
     genericCrudService.list(MongooseModel, function(elementsList, err) {
       if (err) {
         sendJSONresponse(res, 400, err);
+        /*
       } else if (!elementsList || elementsList.length == 0) {
         sendJSONresponse(res, 404, "{message: 'empty list'}");
+        */
       } else {
         sendJSONresponse(res, 200, elementsList);
       }
